@@ -66,9 +66,6 @@ export default function RegisterPage() {
                   Full Name
                 </label>
                 <div className="mt-1 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <User className="h-5 w-5 text-gray-400" />
-                  </div>
                   <input
                     {...register("name", {
                       required: "Name is required",
@@ -82,7 +79,7 @@ export default function RegisterPage() {
                       },
                     })}
                     type="text"
-                    className="form-input pl-10"
+                    className="form-input pl-10 pr-3"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -99,9 +96,6 @@ export default function RegisterPage() {
                   Email Address
                 </label>
                 <div className="mt-1 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="h-5 w-5 text-gray-400" />
-                  </div>
                   <input
                     {...register("email", {
                       required: "Email is required",
@@ -111,7 +105,7 @@ export default function RegisterPage() {
                       },
                     })}
                     type="email"
-                    className="form-input pl-10"
+                    className="form-input pl-10 pr-3"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -128,9 +122,6 @@ export default function RegisterPage() {
                   Password
                 </label>
                 <div className="mt-1 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400" />
-                  </div>
                   <input
                     {...register("password", {
                       required: "Password is required",
@@ -149,9 +140,9 @@ export default function RegisterPage() {
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-5 w-5 text-gray-400" />
+                      <EyeOff className="h-4 w-4 text-gray-400" />
                     ) : (
-                      <Eye className="h-5 w-5 text-gray-400" />
+                      <Eye className="h-4 w-4 text-gray-400" />
                     )}
                   </button>
                 </div>
@@ -168,12 +159,9 @@ export default function RegisterPage() {
                   Role
                 </label>
                 <div className="mt-1 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Building className="h-5 w-5 text-gray-400" />
-                  </div>
                   <select
                     {...register("role")}
-                    className="form-input pl-10"
+                    className="form-input pl-10 pr-3"
                   >
                     <option value="user">User</option>
                     <option value="admin">Admin</option>

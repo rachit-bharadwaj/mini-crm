@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { ProtectedRoute } from "../../components/ProtectedRoute";
-import { Layout } from "../../components/Layout";
-import api from "../../lib/api";
-import { Plus, Search, Edit, Trash2, Eye, Phone, Mail, Building } from "lucide-react";
+import { Building, Edit, Eye, Mail, Phone, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { Layout } from "../../components/Layout";
+import { ProtectedRoute } from "../../components/ProtectedRoute";
+import api from "../../lib/api";
 
 interface Customer {
   _id: string;
@@ -113,15 +113,12 @@ export default function CustomersPage() {
             <form onSubmit={handleSearch} className="flex gap-4">
               <div className="flex-1">
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Search className="h-5 w-5 text-gray-400" />
-                  </div>
                   <input
                     type="text"
                     placeholder="Search customers by name, email, or company..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="form-input pl-12 py-3 text-base"
+                    className="form-input pl-10 pr-3 py-3 text-base"
                   />
                 </div>
               </div>

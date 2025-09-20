@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Eye, EyeOff, User } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useAuth } from "../../contexts/AuthContext";
 import { LoginCredentials } from "../../lib/auth";
-import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
-import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +28,8 @@ export default function LoginPage() {
       toast.success("Login successful!");
       router.push("/dashboard");
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Login failed';
+      const errorMessage =
+        error instanceof Error ? error.message : "Login failed";
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -66,9 +67,6 @@ export default function LoginPage() {
                   Email address
                 </label>
                 <div className="mt-1 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="h-5 w-5 text-gray-400" />
-                  </div>
                   <input
                     {...register("email", {
                       required: "Email is required",
@@ -78,7 +76,7 @@ export default function LoginPage() {
                       },
                     })}
                     type="email"
-                    className="form-input pl-10"
+                    className="form-input pl-10 pr-3"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -95,9 +93,6 @@ export default function LoginPage() {
                   Password
                 </label>
                 <div className="mt-1 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400" />
-                  </div>
                   <input
                     {...register("password", {
                       required: "Password is required",
@@ -116,9 +111,9 @@ export default function LoginPage() {
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-5 w-5 text-gray-400" />
+                      <EyeOff className="h-4 w-4 text-gray-400" />
                     ) : (
-                      <Eye className="h-5 w-5 text-gray-400" />
+                      <Eye className="h-4 w-4 text-gray-400" />
                     )}
                   </button>
                 </div>
