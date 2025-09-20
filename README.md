@@ -35,6 +35,10 @@ A full-stack Customer Relationship Management (CRM) application built with the M
 - Toast notifications
 - Form validation with React Hook Form
 - Charts with Recharts library
+- Modern, professional UI design with animations
+- Database seeding with realistic sample data
+- Enhanced form designs and interactions
+- Loading states and smooth transitions
 
 ## Tech Stack
 
@@ -96,7 +100,12 @@ JWT_EXPIRES_IN=7d
 NODE_ENV=development
 ```
 
-5. Start the backend server:
+5. Seed the database with sample data (optional but recommended):
+```bash
+npm run seed
+```
+
+6. Start the backend server:
 ```bash
 npm run dev
 ```
@@ -261,11 +270,28 @@ npm run build
 
 ## Usage
 
-1. **Register/Login**: Create an account or login with existing credentials
-2. **Dashboard**: View overview statistics and charts
-3. **Customers**: Manage customer information with full CRUD operations
-4. **Leads**: Add and manage leads for each customer
-5. **Search & Filter**: Use search functionality and filters to find specific data
+### Quick Start with Sample Data
+
+1. **Seed the Database**: Run `npm run seed` in the backend directory to populate with sample data
+2. **Login**: Use the pre-created accounts:
+   - Admin: `john@example.com` / `password123`
+   - User: `jane@example.com` / `password123`
+   - User: `mike@example.com` / `password123`
+
+### Application Features
+
+1. **Dashboard**: View beautiful charts and statistics with modern UI
+2. **Customer Management**: Add, edit, and manage customers with enhanced visual design
+3. **Lead Tracking**: Create and track leads with status management
+4. **Search & Filter**: Advanced search and filtering capabilities
+5. **Responsive Design**: Works perfectly on desktop and mobile devices
+
+### Sample Data Includes
+
+- **3 Users** (1 admin, 2 regular users)
+- **50 Customers** with realistic company data
+- **200 Leads** with various statuses and values
+- **Realistic Data**: Names, companies, phone numbers, and lead descriptions
 
 ## Project Structure
 

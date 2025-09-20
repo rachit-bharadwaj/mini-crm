@@ -131,8 +131,8 @@ export const getDashboardStats = async (req: Request, res: Response): Promise<vo
           _id: "$customerId",
           leadCount: { $sum: 1 },
           totalValue: { $sum: "$value" },
-          customerName: { $first: "$customer.name" },
-          customerCompany: { $first: "$customer.company" },
+          customerName: { $first: { $arrayElemAt: ["$customer.name", 0] } },
+          customerCompany: { $first: { $arrayElemAt: ["$customer.company", 0] } },
         },
       },
       {

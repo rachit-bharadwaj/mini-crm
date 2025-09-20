@@ -21,7 +21,6 @@ const UserSchema = new Schema<IUser>(
     email: {
       type: String,
       required: [true, "Email is required"],
-      unique: true,
       lowercase: true,
       trim: true,
       match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Please enter a valid email"],
@@ -42,7 +41,7 @@ const UserSchema = new Schema<IUser>(
   }
 );
 
-// Index for email for faster queries
-UserSchema.index({ email: 1 });
+// Index for email for faster queries (unique index)
+UserSchema.index({ email: 1 }, { unique: true });
 
 export default mongoose.model<IUser>("User", UserSchema);

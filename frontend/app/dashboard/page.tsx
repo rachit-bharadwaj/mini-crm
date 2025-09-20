@@ -24,8 +24,8 @@ interface DashboardStats {
     _id: string;
     leadCount: number;
     totalValue: number;
-    customerName: string;
-    customerCompany: string;
+    customerName?: string;
+    customerCompany?: string;
   }>;
 }
 
@@ -79,29 +79,31 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <Layout>
-        <div className="space-y-6">
+        <div className="space-y-8 animate-fade-in">
           {/* Header */}
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-            <p className="mt-1 text-sm text-gray-500">
-              Overview of your CRM data and performance metrics
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
+            <h1 className="text-3xl font-bold">Dashboard</h1>
+            <p className="mt-2 text-blue-100">
+              Welcome back! Here's an overview of your CRM performance
             </p>
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-5">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="bg-white overflow-hidden shadow-lg rounded-xl card-hover border border-gray-100">
+              <div className="p-6">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <Users className="h-6 w-6 text-gray-400" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <Users className="h-6 w-6 text-blue-600" />
+                    </div>
                   </div>
-                  <div className="ml-5 w-0 flex-1">
+                  <div className="ml-4 flex-1">
                     <dl>
                       <dt className="text-sm font-medium text-gray-500 truncate">
                         Total Customers
                       </dt>
-                      <dd className="text-lg font-medium text-gray-900">
+                      <dd className="text-2xl font-bold text-gray-900">
                         {stats.totalCustomers}
                       </dd>
                     </dl>
@@ -110,18 +112,20 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-5">
+            <div className="bg-white overflow-hidden shadow-lg rounded-xl card-hover border border-gray-100">
+              <div className="p-6">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <Target className="h-6 w-6 text-gray-400" />
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                      <Target className="h-6 w-6 text-green-600" />
+                    </div>
                   </div>
-                  <div className="ml-5 w-0 flex-1">
+                  <div className="ml-4 flex-1">
                     <dl>
                       <dt className="text-sm font-medium text-gray-500 truncate">
                         Total Leads
                       </dt>
-                      <dd className="text-lg font-medium text-gray-900">
+                      <dd className="text-2xl font-bold text-gray-900">
                         {stats.totalLeads}
                       </dd>
                     </dl>
@@ -130,18 +134,20 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-5">
+            <div className="bg-white overflow-hidden shadow-lg rounded-xl card-hover border border-gray-100">
+              <div className="p-6">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <TrendingUp className="h-6 w-6 text-gray-400" />
+                    <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                      <TrendingUp className="h-6 w-6 text-yellow-600" />
+                    </div>
                   </div>
-                  <div className="ml-5 w-0 flex-1">
+                  <div className="ml-4 flex-1">
                     <dl>
                       <dt className="text-sm font-medium text-gray-500 truncate">
                         Recent Leads (30 days)
                       </dt>
-                      <dd className="text-lg font-medium text-gray-900">
+                      <dd className="text-2xl font-bold text-gray-900">
                         {stats.recentLeads}
                       </dd>
                     </dl>
@@ -150,18 +156,20 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-5">
+            <div className="bg-white overflow-hidden shadow-lg rounded-xl card-hover border border-gray-100">
+              <div className="p-6">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <DollarSign className="h-6 w-6 text-gray-400" />
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <DollarSign className="h-6 w-6 text-purple-600" />
+                    </div>
                   </div>
-                  <div className="ml-5 w-0 flex-1">
+                  <div className="ml-4 flex-1">
                     <dl>
                       <dt className="text-sm font-medium text-gray-500 truncate">
                         Leads This Week
                       </dt>
-                      <dd className="text-lg font-medium text-gray-900">
+                      <dd className="text-2xl font-bold text-gray-900">
                         {stats.leadsLastWeek}
                       </dd>
                     </dl>
@@ -172,31 +180,51 @@ export default function DashboardPage() {
           </div>
 
           {/* Charts */}
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {/* Leads by Status - Bar Chart */}
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
-                Leads by Status
-              </h3>
-              <div className="h-64">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-semibold text-gray-900">
+                  Leads by Status
+                </h3>
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+              </div>
+              <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={leadsByStatus}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="_id" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="count" fill="#3B82F6" />
+                  <BarChart data={leadsByStatus} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                    <XAxis 
+                      dataKey="_id" 
+                      tick={{ fontSize: 12 }}
+                      axisLine={{ stroke: '#e5e7eb' }}
+                    />
+                    <YAxis 
+                      tick={{ fontSize: 12 }}
+                      axisLine={{ stroke: '#e5e7eb' }}
+                    />
+                    <Tooltip 
+                      contentStyle={{
+                        backgroundColor: 'white',
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                      }}
+                    />
+                    <Bar dataKey="count" fill="#3B82F6" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
 
             {/* Leads by Status - Pie Chart */}
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
-                Lead Distribution
-              </h3>
-              <div className="h-64">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-semibold text-gray-900">
+                  Lead Distribution
+                </h3>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -204,8 +232,8 @@ export default function DashboardPage() {
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      label={({ _id, count }) => `${_id}: ${count}`}
-                      outerRadius={80}
+                      label={({ _id, count, percent }) => `${_id}: ${count} (${(percent * 100).toFixed(0)}%)`}
+                      outerRadius={100}
                       fill="#8884d8"
                       dataKey="count"
                     >
@@ -213,7 +241,14 @@ export default function DashboardPage() {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip 
+                      contentStyle={{
+                        backgroundColor: 'white',
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                      }}
+                    />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -221,41 +256,63 @@ export default function DashboardPage() {
           </div>
 
           {/* Top Customers */}
-          <div className="bg-white shadow rounded-lg">
-            <div className="px-6 py-4 border-b border-gray-200">
-              <h3 className="text-lg font-medium text-gray-900">Top Customers by Lead Count</h3>
+          <div className="bg-white shadow-lg rounded-2xl border border-gray-100 overflow-hidden">
+            <div className="px-8 py-6 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-gray-100">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold text-gray-900">Top Customers by Lead Count</h3>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                </div>
+              </div>
             </div>
             <div className="overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200">
+              <table className="min-w-full divide-y divide-gray-100">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-8 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Customer
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-8 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Company
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-8 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Lead Count
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-8 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Total Value
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {topCustomers.map((customer) => (
-                    <tr key={customer._id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {customer.customerName}
+                <tbody className="bg-white divide-y divide-gray-100">
+                  {topCustomers.map((customer, index) => (
+                    <tr key={customer._id} className="hover:bg-gray-50 transition-colors">
+                      <td className="px-8 py-6 whitespace-nowrap">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0 h-10 w-10">
+                            <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center text-white font-semibold text-sm">
+                              {typeof customer.customerName === 'string' && customer.customerName.length > 0 
+                                ? customer.customerName.charAt(0).toUpperCase() 
+                                : '?'}
+                            </div>
+                          </div>
+                          <div className="ml-4">
+                            <div className="text-sm font-semibold text-gray-900">
+                              {typeof customer.customerName === 'string' ? customer.customerName : 'Unknown Customer'}
+                            </div>
+                          </div>
+                        </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {customer.customerCompany}
+                      <td className="px-8 py-6 whitespace-nowrap text-sm text-gray-600">
+                        {typeof customer.customerCompany === 'string' ? customer.customerCompany : 'No Company'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {customer.leadCount}
+                      <td className="px-8 py-6 whitespace-nowrap">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                          {customer.leadCount} leads
+                        </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-8 py-6 whitespace-nowrap text-sm font-semibold text-gray-900">
                         ${customer.totalValue.toLocaleString()}
                       </td>
                     </tr>
