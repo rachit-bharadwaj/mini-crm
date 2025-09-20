@@ -47,8 +47,11 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({
         toast.success("Customer created successfully!");
       }
       router.push("/customers");
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "Failed to save customer");
+    } catch (error: unknown) {
+      const errorMessage = error && typeof error === 'object' && 'response' in error 
+        ? (error as { response?: { data?: { message?: string } } }).response?.data?.message || "Failed to save customer"
+        : "Failed to save customer";
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }

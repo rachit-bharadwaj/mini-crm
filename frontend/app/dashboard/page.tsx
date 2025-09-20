@@ -84,7 +84,7 @@ export default function DashboardPage() {
           <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
             <h1 className="text-2xl font-bold">Dashboard</h1>
             <p className="mt-1 text-blue-100 text-sm">
-              Welcome back! Here's an overview of your CRM performance
+              Welcome back! Here&apos;s an overview of your CRM performance
             </p>
           </div>
 
@@ -288,7 +288,7 @@ export default function DashboardPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {topCustomers.map((customer, index) => (
+                  {topCustomers.map((customer) => (
                     <tr key={customer._id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">

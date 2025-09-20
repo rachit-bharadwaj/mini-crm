@@ -27,8 +27,9 @@ export default function LoginPage() {
       await login(data);
       toast.success("Login successful!");
       router.push("/dashboard");
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Login failed';
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -49,7 +50,7 @@ export default function LoginPage() {
               Sign in to your Mini CRM account
             </p>
             <p className="mt-4 text-sm text-gray-500">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 href="/register"
                 className="font-medium text-blue-600 hover:text-blue-500 transition-colors"

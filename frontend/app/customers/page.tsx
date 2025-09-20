@@ -52,7 +52,7 @@ export default function CustomersPage() {
 
   useEffect(() => {
     fetchCustomers(currentPage, searchTerm);
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,9 +72,6 @@ export default function CustomersPage() {
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString();
-  };
 
   if (loading && !data) {
     return (

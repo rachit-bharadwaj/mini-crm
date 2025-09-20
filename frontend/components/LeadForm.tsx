@@ -52,8 +52,11 @@ export const LeadForm: React.FC<LeadFormProps> = ({
         toast.success("Lead created successfully!");
       }
       router.push(`/customers/${customerId}`);
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "Failed to save lead");
+    } catch (error: unknown) {
+      const errorMessage = error && typeof error === 'object' && 'response' in error 
+        ? (error as { response?: { data?: { message?: string } } }).response?.data?.message || "Failed to save lead"
+        : "Failed to save lead";
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
