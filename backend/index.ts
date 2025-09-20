@@ -9,7 +9,10 @@ import { getLocalIpAddress } from "./utils/config";
 import { configureLogger } from "./utils/logger";
 
 // Routes
-import { baseRoutes } from "./routes";
+import { baseRoutes, authRoutes, customerRoutes, leadRoutes, dashboardRoutes } from "./routes";
+
+// Database
+import connectDB from "./database/connection/mongoose";
 
 dotenv.config();
 
@@ -39,9 +42,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // API routes
 app.use("/", baseRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/customers", customerRoutes);
+app.use("/api", leadRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // start the server
 const startServer = async () => {
+  // Connect to database first
+  try {
+    await connectDB();
+    console.log("Database connected successfully");
+  } catch (error) {
+    console.error("Database connection failed:", error);
+    process.exit(1);
+  }
+
   let currentPort = parseInt(PORT.toString());
   let maxRetries = 10;
   let retryCount = 0;
